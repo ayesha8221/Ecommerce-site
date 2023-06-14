@@ -32,6 +32,7 @@ h4, h3 {
 }
 a.nav-link {
     color: black;
+    display: inline-block;
 }
 
 .carousel-caption.d-none.d-md-block {
