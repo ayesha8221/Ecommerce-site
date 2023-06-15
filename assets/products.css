@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=DM+Sans&family=Yeseva+One&display=swap');
+
+body{
+    font-family: 'DM Sans', sans-serif;
+}
+
 .color {
     width: 100%;
     padding-top: 6px;
@@ -13,6 +20,10 @@
     height: auto;
 }
 
+.heading{
+    font-family: 'Yeseva One', cursive;
+    font-size: 30px;
+}
 
 a.nav-link {
     font-size: 20px;
@@ -58,6 +69,17 @@ a.nav-link:after {
     background-color: rgb(253, 227, 231);
 }
 
+.delete {
+    width: 30px;
+    border: solid rgb(253, 227, 231);
+    background-color: rgb(253, 227, 231);
+}
+
+h5 {
+    text-align: center;
+    font-family: 'Yeseva One', cursive;
+}
+
 div.modal-content {
     padding-left: 35px;
     background-color: rgb(253, 227, 231);
@@ -65,6 +87,11 @@ div.modal-content {
     text-shadow: 2px 2px 4px gray;
     border: solid black;
 }
+
+#filter {
+    text-align: center;
+}
+
 
 .box {
     width: 45px;
@@ -80,6 +107,7 @@ h4.modal-title {
 
 #product-imgs{
     width: 400px;
+    border-radius: 10px;
 }
 
 #products {
@@ -104,6 +132,17 @@ h4.modal-title {
 h4 {
     text-align: center;
 }
+
+.footer {
+    background-color: black;
+    color: white;
+}
+
+.icons {
+    width: 25px;
+    margin-right: 10px;
+}
+
 
 @media screen and (max-width: 1053px) {
     #products {

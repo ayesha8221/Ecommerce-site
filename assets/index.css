@@ -1,8 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=DM+Sans&family=Yeseva+One&display=swap');
+
 body {
     padding: 0;
     margin: 0;
     height: 100vh;
     overflow: scroll;
+    font-family: 'DM Sans', sans-serif;
     /* box-sizing: border-box; */
 }
 
@@ -18,6 +22,11 @@ body::-webkit-scrollbar {
     background-color: black;
     color: white;
     text-align: center;
+}
+
+.heading {
+    font-size: 30px;
+    font-family: 'Yeseva One', cursive;
 }
 
 h4, h3 {
@@ -55,8 +64,18 @@ a.nav-link:after {
     transform-origin: bottom;
 }
 
-.carousel-caption.d-none.d-md-block {
+h5 {
     color: black;
+    font-size: 30px;
+}
+
+#categories {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: center;
+    align-content: center;
+    gap: 60px;
+    text-align: center;
 }
 
 .footer {
@@ -67,18 +86,43 @@ a.nav-link:after {
 .kart {
     width: 28px;
     height: auto;
-    /* margin-left: 1290px; */
-    /* display: flex;
-    justify-items:end;
-    align-items: end; */
 }
 
 .icons {
     width: 25px;
+    margin-right: 10px;
 }
 
 
 @media screen and (max-width: 1053px) {
-
-    
+    #categories {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        align-items: center;
+        justify-content: center;
+    }
+}
+@media screen and (max-width: 990px) {
+    #categories {
+        display: grid;
+        grid-template-columns: auto auto;
+        align-items: center;
+        justify-content: center;
+    }
+}
+@media screen and (max-width: 695px) {
+    #categories {
+        display: grid;
+        grid-template-columns: auto;
+        align-items: center;
+        justify-content: center;
+    }
+}
+@media screen and (max-width: 580px) {
+    #categories {
+        display: grid;
+        grid-template-columns: auto;
+        align-items: center;
+        justify-content: center;
+    }
 }

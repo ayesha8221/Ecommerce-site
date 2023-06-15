@@ -1,6 +1,6 @@
-let products = JSON.parse(localStorage.getItem("products"))
+let products =  JSON.parse(localStorage.getItem("products"))
 if (!products) {
-  products = [
+   let products = [
     {
       id: 1,
       image: "https://i.postimg.cc/WbQbGKNs/b1418d4e-7bce-4a6d-930e-6a0f8ae0b56d.webp",
@@ -48,9 +48,9 @@ if (!products) {
       category: "Facial Cleansers",
       price: "R125",
       quantity: 5,
-    }
+    },
 
-  ]
+  ];
   localStorage.setItem("products", JSON.stringify(products))
 };
 
@@ -71,7 +71,7 @@ function displayProduts(category = "") {
   })
 }
 
-
+// filter products serums, masks, cleansers
 function filter() {
   let selectCategory = document.getElementById('categories');
   let selectedCategory = selectCategory.value;
@@ -107,15 +107,13 @@ function updateCart() {
     cartItem.innerHTML = `
         <span>${product.name}</span>
         <span>${product.price}</span>
-        <p>Total R ${product.price}</p>
-        <button onclick="removeFromCart(${index})" class="rembutton">❌</button>
+        <button onclick="removeFromCart(${index})" class="rembutton"><img class="delete" src="https://i.postimg.cc/4NFKkLG0/3102186.png" alt="delete"></button>
+        <br>
       `;
     cartContainer.appendChild(cartItem);
   });
   calculateTotal();
 }
-
-
 
 // Function to calculate
 function calculateTotal() {
@@ -130,7 +128,7 @@ function calculateTotal() {
 let admin = JSON.parse(localStorage.getItem("products"));
 if (!admin) {
   admin = []
-  }
+}
 
 function addToAdmin() {
   let Value = {
@@ -144,6 +142,7 @@ function addToAdmin() {
   localStorage.setItem("products", JSON.stringify(products));
 
     let table = document.querySelector(".display");
+    localStorage.setItem("products", JSON.stringify(products));
     table.innerHTML = "";
     admin.forEach((product, index) => {
       table.innerHTML +=
@@ -162,17 +161,22 @@ function addToAdmin() {
     });
 }
 
+
 function loadItems() {
-  let loadProducts = localStorage.getItem("Products");
+  let loadProducts = localStorage.getItem("products");
   if (loadProducts) {
     cart = JSON.parse(loadProducts);
     updateCart();
   }
 }
-
-window.addEventListener("load", function () {
-  loadItems();
-});
-
 displayProduts();
 updateCart();
+
+
+
+
+// window.addEventListener("load", function () {
+//   loadItems();
+// });
+
+

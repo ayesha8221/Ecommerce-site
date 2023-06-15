@@ -1,3 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=DM+Sans&family=Yeseva+One&display=swap');
+
+
+body {
+    font-family: 'DM Sans', sans-serif;
+}
+
 .color {
     width: 100%;
     padding-top: 6px;
@@ -6,6 +14,15 @@
     background-color: black;
     color: white;
     text-align: center;
+}
+
+h4 {
+    text-align: center;
+}
+
+.heading{
+    font-size: 30px;
+    font-family: 'Yeseva One', cursive;
 }
 
 .kart {
@@ -48,8 +65,14 @@ a.nav-link:after {
     /* height: 40px; */
 }
 
+.footer {
+    background-color: black;
+    color: white;
+}
+
 .icons {
     width: 25px;
+    margin-right: 10px;
 }
 
 .card.m-2.p-3.contact {

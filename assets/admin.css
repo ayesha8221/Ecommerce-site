@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=DM+Sans&family=Yeseva+One&display=swap');
+
+body {
+    font-family: 'DM Sans', sans-serif;
+}
+
 .color {
     width: 100%;
     padding-top: 6px;
@@ -16,6 +23,16 @@ th {
     width: 28px;
     height: auto;
 }
+
+h4 {
+    text-align: center;
+}
+
+.heading {
+    font-size: 30px;
+    font-family: 'Yeseva One', cursive;
+}
+
 
 a.nav-link {
     font-size: 20px;
@@ -44,4 +61,33 @@ a.nav-link:after {
  a.nav-link:hover:after {
     transform: scaleX(1);
     transform-origin: bottom;
+}
+
+div.modal-content {
+    padding-left: 35px !important;
+    background-color: rgb(253, 227, 231) !important;
+    color: black;
+    text-shadow: 2px 2px 4px gray;
+    border: solid black;
+}
+
+.rembutton {
+    border-style: none;
+    background-color: rgb(253, 227, 231);
+}
+
+.delete {
+    width: 30px;
+    border: solid rgb(253, 227, 231);
+    background-color: rgb(253, 227, 231);
+}
+
+.footer {
+    background-color: black;
+    color: white;
+}
+
+.icons {
+    width: 25px;
+    margin-right: 10px;
 }
