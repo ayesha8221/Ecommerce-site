@@ -49,13 +49,15 @@
       </div>
       <br>
 
-      <div class="filter">
-        <span> Filter: </span>
-        <select>
-          <option value="Default"> Default </option>
-          <option value="HighToLow"> High to Low </option>
-          <option value="LowToHigh"> Low to High</option>
+      <div id="filter">
+        <label for="">Filter by: </label>
+        <select name="" id="categories">
+          <option value="">All</option>
+          <option value="Serums"> Serums </option>
+          <option value="Masks"> Masks </option>
+          <option value="Facial Cleansers"> Facial Cleansers </option>
         </select>
+        <button class="btn btn-dark" onclick="filter()">filter</button>
       </div>
 
         <div id="products"></div>
