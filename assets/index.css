@@ -25,14 +25,34 @@ h4, h3 {
     text-align: center;
 }
 
-.nav {
-    display: inline-block;
-    /* text-align: center; */
-    color: black;
-}
 a.nav-link {
+    font-size: 20px;
     color: black;
     display: inline-block;
+    position: relative;
+    padding-right: 70px;
+}
+
+a.nav-link:hover {
+    color: black;
+    display: inline-
+}
+
+a.nav-link:after {
+    content: '';
+    position: absolute;
+    width: 70%;
+    transform: scaleX(0);
+    height: 1.5px;
+    bottom: 0;
+    left: 0;
+    background-color: black;
+    transition: transform 0.25s;
+}
+
+ a.nav-link:hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom;
 }
 
 .carousel-caption.d-none.d-md-block {

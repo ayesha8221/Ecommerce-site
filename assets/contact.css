@@ -8,6 +8,40 @@
     text-align: center;
 }
 
+.kart {
+    width: 28px;
+    height: auto;
+}
+
+a.nav-link {
+    font-size: 20px;
+    color: black;
+    display: inline-block;
+    position: relative;
+    padding-right: 70px;
+}
+
+a.nav-link:hover {
+    color: black;
+}
+
+a.nav-link:after {
+    content: '';
+    position: absolute;
+    width: 70%;
+    transform: scaleX(0);
+    height: 1.5px;
+    bottom: 0;
+    left: 0;
+    background-color: black;
+    transition: transform 0.25s;
+  }
+
+ a.nav-link:hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom;
+}
+
 .footer {
     background-color: black;
     color: white;
@@ -22,8 +56,4 @@
     background-color: rgb(248, 226, 230);
     color: rgb(255, 255, 255);
     text-shadow: 2px 2px 3.5px rgb(49, 49, 49);
-}
-
-a.nav-link {
-    color: black;
 }

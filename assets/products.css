@@ -36,7 +36,7 @@ a.nav-link:after {
     left: 0;
     background-color: black;
     transition: transform 0.25s;
-  }
+}
 
  a.nav-link:hover:after {
     transform: scaleX(1);
