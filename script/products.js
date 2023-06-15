@@ -50,6 +50,7 @@ const products = [
     
   ];
   
+  // display products
   function displayProducts() {
     const ourProducts = document.getElementById("products");
     products.forEach((product) => {
@@ -62,7 +63,10 @@ const products = [
       ourProducts.appendChild(productElement);
     });
   }
+
   let cart = JSON.parse(localStorage.getItem("Products")) || [];
+
+  // Add to cart
   function addToCart(productId) {
     const product = products.find((product) => product.id === productId);
     if (product && product.quantity > 0) {
@@ -71,11 +75,15 @@ const products = [
       updateCart();
     }
   }
+
+  // remove from cart
   function removeFromCart(index) {
     let removedProduct = cart.splice(index, 1)[0];
     removedProduct.quantity++;
     updateCart();
   }
+
+  // Update cart
   function updateCart() {
     const cartContainer = document.getElementById("cart-body");
     localStorage.setItem("Products", JSON.stringify(cart));
@@ -92,6 +100,8 @@ const products = [
     });
     calculateTotal();
   }
+
+  // Function to calculate
   function calculateTotal() {
     let totalElement = document.getElementById("total");
     let total = cart.reduce((acc, product) => {
@@ -101,3 +111,43 @@ const products = [
   }
   displayProducts();
   updateCart();
+
+
+  // Admin page
+  let admin = JSON.parse(localStorage.getItem("adminP"));
+if (!admin) {
+  admin = [];
+}
+
+function addToAdmin () {
+  let Value = {
+    id: document.getElementById("id").value,
+    name: document.getElementById("name").value,
+    price: document.getElementById("price").value,
+    image: document.getElementById("image").value,
+}
+
+  admin.push(Value);
+  localStorage.setItem("adminP", JSON.stringify(admin)); 
+  
+
+  let table = document.querySelector(".display");
+  table.innerHTML = "";
+  admin.forEach((data) => {
+    table.innerHTML += 
+    ` 
+    <tbody>
+    <tr>
+      <td>${data.id}</td>
+      <td>${data.image}</td>
+      <td>${data.name}</td>
+      <td>${data.price}</td>
+    </tr>
+    <tr>
+    </tbody>
+    `;
+  
+});
+display();
+
+}
