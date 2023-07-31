@@ -3,6 +3,7 @@
 
 body {
     font-family: 'DM Sans', sans-serif;
+    height: 100vh;
 }
 
 .color {
@@ -71,6 +72,14 @@ div.modal-content {
     border: solid black;
 }
 
+input#id, input#name, input#price, input#image {
+    margin-right: 10px;
+}
+
+input#id {
+    margin-left: 10px;
+}
+
 .rembutton {
     border-style: none;
     background-color: rgb(253, 227, 231);
@@ -85,6 +94,9 @@ div.modal-content {
 .footer {
     background-color: black;
     color: white;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
 }
 
 .icons {

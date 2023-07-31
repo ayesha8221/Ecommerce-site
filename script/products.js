@@ -1,6 +1,7 @@
-let products =  JSON.parse(localStorage.getItem("products"))
+
+const products =  JSON.parse(localStorage.getItem("products"))
 if (!products) {
-   let products = [
+   const products = [
     {
       id: 1,
       image: "https://i.postimg.cc/WbQbGKNs/b1418d4e-7bce-4a6d-930e-6a0f8ae0b56d.webp",
@@ -52,11 +53,15 @@ if (!products) {
 
   ];
   localStorage.setItem("products", JSON.stringify(products))
-};
+}
 
 function displayProduts(category = "") {
   const ourProducts = document.getElementById("products");
-  ourProducts.innerHTML = "";
+  ourProducts.innerHTML = ""
+  if (!Array.isArray(products)) {
+    console.error("Products data is not an array.");
+    return;
+  }
   products.forEach((product) => {
     if (category === "" || product.category === category) {
       const productElement = document.createElement("div");
@@ -68,7 +73,7 @@ function displayProduts(category = "") {
     `;
     ourProducts.appendChild(productElement)
     }
-  })
+  });
 }
 
 // filter products serums, masks, cleansers
@@ -124,43 +129,153 @@ function calculateTotal() {
   totalElement.textContent = `R${total}`;
 }
 
+
 // Admin page
 let admin = JSON.parse(localStorage.getItem("products"));
 if (!admin) {
   admin = []
 }
 
+function createTableRow(product) {
+  const row = document.createElement("tr");
+  row.innerHTML = `
+    <td>${product.id}</td>
+    <td><img src="${product.image}" alt="${product.name}" style="width: 50px; height: 50px;"></td>
+    <td>${product.name}</td>
+    <td>${product.price}</td>
+    <td><button onclick="editProductDetails(${product.id})">Edit</button></td>
+      <td><button onclick="deleteFromAdmin(${product.id})">Delete</button></td>    
+  `;
+  return row;
+}
+
+// Function to populate the admin table with product data
+function populateAdminTable() {
+  const products = JSON.parse(localStorage.getItem("products"));
+  if (!Array.isArray(products)) {
+    console.error("Products data not found in localStorage or is not an array.");
+    return;
+  }
+
+  const displayTableBody = document.querySelector(".display");
+  displayTableBody.innerHTML = "";
+
+  products.forEach((product) => {
+    const row = createTableRow(product);
+    displayTableBody.appendChild(row);
+  });
+}
+
+
+// add to admin table
 function addToAdmin() {
-  let Value = {
-    id: document.getElementById("id").value,
+  // Assuming you have input fields for the product details (id, name, price, image) in your HTML
+  const newProduct = {
+    id: parseInt(document.getElementById("id").value),
     name: document.getElementById("name").value,
     price: document.getElementById("price").value,
     image: document.getElementById("image").value,
-  }
+  };
 
-  admin.push(Value);
-  localStorage.setItem("products", JSON.stringify(products));
+  // Add the new product to the admin array
+  admin.push(newProduct);
 
-    let table = document.querySelector(".display");
-    localStorage.setItem("products", JSON.stringify(products));
-    table.innerHTML = "";
-    admin.forEach((product, index) => {
-      table.innerHTML +=
-        ` 
-    <tbody>
-    <tr>
-      <td>${product.id}</td>
-      <td>${product.image}</td>
-      <td>${product.name}</td>
-      <td>${product.price}</td>
-      <td><button onclick="removeFromCart(${index})" class="rembutton">❌</button></td>
-    </tr>
-    <tr>
-    </tbody>
-    `;
-    });
+  // Save the updated admin array to localStorage
+  localStorage.setItem("products", JSON.stringify(admin));
+
+  // Repopulate the admin table to show the new product
+  populateAdminTable();
 }
 
+// delete from admin table
+function deleteFromAdmin(productId) {
+  // Find the index of the product with the given productId in the admin array
+  const index = admin.findIndex((product) => product.id === productId);
+
+  // If the product is found (index is not -1), remove it from the admin array
+  if (index !== -1) {
+    admin.splice(index, 1);
+
+    // Save the updated admin array to localStorage
+    localStorage.setItem("products", JSON.stringify(admin));
+
+    // Repopulate the admin table to reflect the updated data
+    populateAdminTable();
+  }
+}
+
+// sort function to sort from lowest to highest and back again
+let isAscending = true;
+
+// Sort function to sort products by price in the specified order
+function sortAdminByPrice(ascending) {
+  if (ascending) {
+    admin.sort((a, b) => parseFloat(a.price.replace("R", "")) - parseFloat(b.price.replace("R", "")));
+  } else {
+    admin.sort((a, b) => parseFloat(b.price.replace("R", "")) - parseFloat(a.price.replace("R", "")));
+  }
+
+  // Save the sorted admin array to localStorage
+  localStorage.setItem("products", JSON.stringify(admin));
+
+  // Repopulate the admin table to reflect the sorted data
+  populateAdminTable();
+}
+
+// Function to toggle the sort order when the "Sort" button is clicked
+function toggleSort() {
+  isAscending = !isAscending;
+  const buttonText = isAscending ? "Sort by Price (Low to High)" : "Sort by Price (High to Low)";
+  document.querySelector("button").textContent = buttonText;
+
+  // Sort the products based on the current sort order
+  sortAdminByPrice(isAscending);
+}
+
+// Function to edit product details
+function editProductDetails(productId) {
+  const productToEdit = admin.find((product) => product.id === productId);
+
+  if (productToEdit) {
+    // Pre-fill the input fields in the modal with existing product name and price
+    document.getElementById("editProductName").value = productToEdit.name;
+    document.getElementById("editProductPrice").value = productToEdit.price;
+
+    // Set the data-product-id attribute to store the product ID
+    document.getElementById("editModal").setAttribute("data-product-id", productId);
+
+    // Show the Bootstrap modal
+    const editModal = new bootstrap.Modal(document.getElementById("editModal"));
+    editModal.show();
+  }
+}
+
+// Function to save the edited product details
+function saveProductDetails() {
+  const productId = parseInt(document.getElementById("editModal").getAttribute("data-product-id"));
+  const newName = document.getElementById("editProductName").value;
+  const newImage = document.getElementById("editProductImage").value;
+  const newPrice = document.getElementById("editProductPrice").value;
+
+  const productToEdit = admin.find((product) => product.id === productId);
+
+  if (productToEdit) {
+    // Update the product details in the admin array
+    productToEdit.image = newImage || productToEdit.image;
+    productToEdit.name = newName || productToEdit.name;
+    productToEdit.price = newPrice || productToEdit.price;
+
+    // Save the updated admin array to localStorage
+    localStorage.setItem("products", JSON.stringify(admin));
+
+    // Repopulate the admin table to reflect the updated data
+    populateAdminTable();
+
+    // Hide the Bootstrap modal after saving changes
+    const editModal = new bootstrap.Modal(document.getElementById("editModal"));
+    editModal.hide();
+  }
+}
 
 function loadItems() {
   let loadProducts = localStorage.getItem("products");
@@ -169,14 +284,14 @@ function loadItems() {
     updateCart();
   }
 }
+populateAdminTable();
 displayProduts();
 updateCart();
+// loadItems();
 
 
-
-
-// window.addEventListener("load", function () {
-//   loadItems();
-// });
+window.addEventListener("load", function () {
+  loadItems();
+});
 
 

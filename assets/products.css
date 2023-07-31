@@ -123,6 +123,7 @@ h4.modal-title {
     background-color: rgb(253, 227, 231);
     height: 45px;
     box-shadow: 2px 2px 2px grey;
+    margin-bottom: 10px;
 }
 
 .addbtn:hover {
@@ -136,6 +137,9 @@ h4 {
 .footer {
     background-color: black;
     color: white;
+    /* position: fixed; */
+    /* width: 100%; */
+    /* bottom: 0; */
 }
 
 .icons {

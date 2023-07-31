@@ -42,30 +42,63 @@
       </nav>
       <hr>
       <!-- nav end -->
-      <div id="products"></div>
 
 
       <!-- admin display -->
-      <button onclick="SortingAdmin()">Sort</button>
+      <div class="container d-flex justify-content-center">
+        <button onclick="sortAdminByPrice()">Sort</button>
         <input type="text" id="id" placeholder="id" />
         <input type="text" id="name" placeholder="Name"/>
         <input type="text" id="price" placeholder="Set a price"/>
         <input type="text" id="image" placeholder="Image url" />
         <button onclick="addToAdmin()">Add</button>
+      </div>
+
+      <!-- Bootstrap modal for editing product details -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Edit Product Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="editProductImage" class="form-label">Product Image:</label>
+          <input type="text" class="form-control" id="editProductImage">
+        </div>
+        <div class="mb-3">
+          <label for="editProductName" class="form-label">Product Name:</label>
+          <input type="text" class="form-control" id="editProductName">
+        </div>
+        <div class="mb-3">
+          <label for="editProductPrice" class="form-label">Product Price:</label>
+          <input type="text" class="form-control" id="editProductPrice">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="saveProductDetails()">Save Changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+      
         
-        <p id="display1"></p>
-        <div class="table">
-          <table>
+
+        <div class="container">
+          <table class="table">
             <thead>
               <tr>
               <th scope="col">ID</th>
               <th scope="col">Image</th>
                 <th scope="col">Name</th>
                 <th scope="col">Price</th>
-                <th scope="col">Edit|Delete</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
               </tr>
               </thead>
-              <tbody class="display">
+              <tbody class ="display">
               </tbody>
           </table>
 
