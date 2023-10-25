@@ -76,6 +76,8 @@ function displayProduts(category = "") {
   });
 }
 
+displayProduts();
+
 // filter products serums, masks, cleansers
 function filter() {
   let selectCategory = document.getElementById('categories');
