@@ -167,7 +167,7 @@ function populateAdminTable() {
     displayTableBody.appendChild(row);
   });
 }
-
+displayProduts();
 
 // add to admin table
 function addToAdmin() {
